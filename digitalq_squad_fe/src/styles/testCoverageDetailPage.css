@@ -1,0 +1,50 @@
+/* General Styles */
+body,
+html {
+  height: 100%; /* Ensure the html and body are full height */
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  font-family: Arial, sans-serif; /* Ensures a clean, readable font is used */
+  background-color: #f4f4f4; /* Light grey background to reduce eye strain */
+  color: #333; /* Dark grey text for better readability */
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  background-color: #75c9e2; /* Adjust the background color as needed */
+}
+
+.content-section {
+  display: flex;
+  justify-content: space-between; /* Ensures sections are side by side */
+  align-items: flex-start; /* Aligns items at the start of the flex container */
+  width: 100%; /* Full width to utilize the space */
+  max-width: 1200px; /* Maximum width to control sizing */
+  margin: 20px 0; /* Adds vertical spacing */
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds depth with a subtle shadow */
+  background-color: #fff; /* White background for the content area */
+}
+
+.metrics-section,
+.code-section {
+  flex: 1; /* Allows both sections to grow and take up equal space */
+  margin: 10px; /* Adds space between sections */
+  padding: 20px; /* Internal padding */
+}
+
+.metrics-section {
+  min-width: 280px; /* Minimum width to prevent squeezing on smaller screens */
+}
+
+.code-section {
+  overflow-x: auto; /* Allows horizontal scrolling for longer lines of code */
+  background-color: #eef; /* Slightly different background for code section */
+}
+
+/* Styles for the code element */
+.code {
+  white-space: pre-wrap; /* Maintains whitespace formatting */
+  font-family: "Courier New", monospace; /* Font for code readability */
+}

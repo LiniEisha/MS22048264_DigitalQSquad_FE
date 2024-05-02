@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+// App.js
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import LandingPage from "./components/landingPage";
+import HomePage from "./components/homePage";
+import TestCoveragePage from "./components/testCoveragePage";
+import CodeComplexityPage from "./components/codeComplexityPage";
+import RecommendationsPage from "./components/recommendationPage";
+import DetailedCoverageReport from "./components/testCoverageDetailPage";
+import CodeComplexityDetail from "./components/codeComplexityDetailPage";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/home" element={<HomePage />} />
+        <Route path="/testCoverage" element={<TestCoveragePage />} />
+        <Route path="/codeComplexity" element={<CodeComplexityPage />} />
+        <Route path="/recommendations" element={<RecommendationsPage />} />
+        <Route path="/coverage/:id" element={<DetailedCoverageReport />} />
+        <Route path="/complexity/:id" element={<CodeComplexityDetail />} />
+      </Routes>
+    </Router>
   );
 }
 

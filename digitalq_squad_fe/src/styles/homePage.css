@@ -1,0 +1,98 @@
+/* File path: src/components/DashboardPage.css */
+
+/* Add your styles here */
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.popup-inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background: white;
+  /* More styling for your popup */
+}
+
+/* DashboardPage.css */
+.dashboard-page {
+  background-color: #75c9e2; /* Example background color */
+  padding: 20px;
+}
+
+.header-area {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logout-button {
+  margin-left: auto;
+  background-color: #033747;
+  border-color: #edf0f3;
+}
+
+/* Tabs Container */
+.tabs-container {
+  background-color: #f8f9fa; /* Light grey background */
+  padding: 1rem; /* Add some padding around the tabs */
+  border-bottom: 2px solid #dee2e6; /* A subtle border under the tabs for separation */
+}
+
+/* Individual Tab Styling */
+.tab {
+  padding: 0.5rem 1rem; /* Add padding inside the tabs for better spacing */
+  margin-right: 0.5rem; /* Add some margin to the right of each tab */
+  display: inline-block; /* Display tabs inline */
+  cursor: pointer; /* Change the cursor to indicate the tabs are clickable */
+  border-radius: 4px; /* Slightly rounded corners for a modern look */
+  transition: background-color 0.2s; /* Smooth transition for hover effect */
+}
+
+.tab:hover {
+  background-color: #e9ecef; /* A lighter color on hover */
+}
+
+/* Active Tab Highlighting */
+.tab.active {
+  background-color: #007bff; /* Bootstrap primary color for the active tab */
+  color: #fff; /* White text color for contrast */
+  border: none; /* Remove border if there's any set on the tabs */
+}
+
+/* HomePage.css */
+
+/* Style for all tabs */
+.nav-tabs .nav-item .nav-link {
+  padding: 0.5rem 1rem;
+  color: #495057; /* Darker text color for better contrast */
+  border: 1px solid transparent;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+  background-color: #f8f9fa; /* Light grey background */
+}
+
+/* Style for the active tab */
+.nav-tabs .nav-item .nav-link.active {
+  color: #fff;
+  background-color: #033747; /* Blue background for active tab */
+  border-color: #edf0f3;
+}
+
+/* Style for hover effect on tabs */
+.nav-tabs .nav-item .nav-link:hover {
+  border-color: #e9ecef #e9ecef #dee2e6; /* Light border color on hover */
+}
+
+.new-button {
+  margin-left: 10px;
+  background-color: #033747;
+  border-color: #edf0f3;
+}

@@ -1,0 +1,48 @@
+/* File path: src/components/DigitalIQInterface.css */
+
+.digital-iq-interface {
+  text-align: center;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #75c9e2; /* Adjust background color as needed */
+}
+
+.main-content {
+  background-size: cover;
+  height: 100vh; /* Adjust height as needed */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #067ea4; /* Adjust text color as needed */
+}
+
+.footer {
+  padding: 1rem;
+  background-color: #067ea4; /* Adjust background color as needed */
+}
+.image-container img {
+  width: 100%;
+  height: auto;
+}
+
+.sign-in-button {
+  background-color: #033747;
+  border-color: #edf0f3;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: 30px;
+  margin: 4px 2px;
+  text-decoration: Bold;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.sign-in-button:hover {
+  background-color: #0056b3; /* Adjust button hover color as needed */
+}

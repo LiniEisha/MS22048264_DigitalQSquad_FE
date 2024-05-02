@@ -1,0 +1,50 @@
+/* File path: src/styles/menu.css */
+
+.menu {
+  display: flex;
+  background-color: #f8f9fa;
+  padding: 0.5rem;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.menu-item {
+  text-decoration: none;
+  color: #067ea4;
+  margin-right: 1rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
+}
+
+.menu-item:hover,
+.menu-item.active {
+  color: #067ea4;
+  background-color: #e9ecef;
+}
+
+.logout-button {
+  padding: 0.25rem 0.75rem;
+  color: white;
+  background-color: #033747;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.logout-button:hover {
+  background-color: #033747;
+}
+
+/* Responsive styling if needed */
+@media (max-width: 768px) {
+  .menu {
+    flex-direction: column;
+  }
+
+  .menu-item {
+    margin-bottom: 0.5rem;
+  }
+}

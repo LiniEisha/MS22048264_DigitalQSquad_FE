@@ -1,0 +1,15 @@
+/* File path: src/styles/footer.css */
+
+.footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  font-size: 0.8rem;
+}
+
+/* Add additional styles below as needed */

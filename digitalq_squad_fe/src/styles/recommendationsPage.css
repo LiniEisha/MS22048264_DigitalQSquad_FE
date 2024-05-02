@@ -1,0 +1,51 @@
+/* recommendationsPage.css */
+
+.recommendations-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #75c9e2; /* Adjust the background color as needed */
+  padding: 20px;
+}
+
+.statistics-container {
+  display: flex;
+  width: 100%;
+  margin-bottom: 30px;
+  justify-content: space-evenly; /* Space out the statistics evenly */
+}
+
+.statistics-block {
+  background-color: #fff; /* White background for the blocks */
+  padding: 20px;
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+  width: 45%; /* Take up half of the container width */
+  margin: 0 10px; /* Spacing between blocks */
+}
+
+.statistics-block h3 {
+  margin-top: 0;
+  color: #067ea4; /* Color for headings */
+}
+
+.recommendations-block {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly; /* Space out the recommendations evenly */
+}
+
+.recommendation-section {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  width: 45%;
+  margin: 0 10px;
+}
+
+.recommendation-section h4 {
+  color: #067ea4; /* Color for subheadings */
+  margin-top: 0;
+}
+
+/* Rest of your CSS for elements inside the recommendations block */
