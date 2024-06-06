@@ -3,13 +3,12 @@
 import React, { useState } from "react";
 import { Tab, Tabs, Table } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Header from "./headerItems"; // Make sure this points to the correct file location
-import Menu from "./menuItems"; // Make sure this points to the correct file location
-import Footer from "./footerItem"; // Make sure this points to the correct file location
-import NewItemPopup from "./newItemPopup"; // Ensure this component is updated as per the new requirements
-import "../styles/homePage.css"; // Ensure this path is correct
+import Header from "./headerItems";
+import Menu from "./menuItems";
+import Footer from "./footerItem";
+import NewItemPopup from "./newItemPopup";
+import "../styles/homePage.css";
 
-// Dummy data for the table
 const modulesData = [
   { name: "User authentication module", coverage: "75%", complexity: "High" },
   { name: "Order management", coverage: "86%", complexity: "Medium" },
@@ -43,7 +42,7 @@ function DashboardPage() {
           New
         </button>
 
-        <hr></hr>
+        <hr />
         <Table striped bordered hover>
           <thead>
             <tr>
