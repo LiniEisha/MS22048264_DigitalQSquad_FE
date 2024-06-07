@@ -8,6 +8,7 @@ import CodeComplexityPage from "./components/codeComplexityPage";
 import RecommendationsPage from "./components/recommendationPage";
 import DetailedCoverageReport from "./components/testCoverageDetailPage";
 import CodeComplexityDetail from "./components/codeComplexityDetailPage";
+import LoginPage from "./components/loginPage";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/home" element={<HomePage />} />
+        <Route path="/login" element={<LoginPage/>} />
         <Route path="/testCoverage" element={<TestCoveragePage />} />
         <Route path="/codeComplexity" element={<CodeComplexityPage />} />
         <Route path="/recommendations" element={<RecommendationsPage />} />
