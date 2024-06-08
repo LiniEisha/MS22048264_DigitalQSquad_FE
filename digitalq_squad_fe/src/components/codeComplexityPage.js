@@ -1,22 +1,29 @@
-// ModuleList.jsx
-import React, { useState } from "react";
-import { Tab, Tabs, Table } from "react-bootstrap";
-import "../styles/CodeComplexityPage.css"; // Make sure this points to the correct file location
-import Header from "./headerItems"; // Make sure this points to the correct file location
-import Menu from "./menuItems"; // Make sure this points to the correct file location
-import Footer from "./footerItem"; // Make sure this points to the correct file location
+import React, { useState, useEffect } from "react";
+import { Tab, Tabs } from "react-bootstrap";
+import "../styles/CodeComplexityPage.css";
+import Header from "./headerItems";
+import Menu from "./menuItems";
+import Footer from "./footerItem";
 import { NavLink } from "react-router-dom";
+import axios from 'axios';
 
-const modulesData = [
-  { id: 1, name: "NestedExample", complexity: "High" },
-  { id: 1, name: "User authentication module", complexity: "Low" },
-  { id: 2, name: "Order management", complexity: "High" },
-  { id: 3, name: "Search engine", complexity: "Medium" },
-  { id: 4, name: "Payment and Shipping", complexity: "Medium" },
-];
 function CodeComplexityPage() {
   const [key, setKey] = useState("home");
-  const [showPopup, setShowPopup] = useState(false);
+  const [modulesData, setModulesData] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await axios.get('http://localhost:8000/api/complexity/results');
+        console.log("Fetched data:", response.data);
+        setModulesData(response.data);
+      } catch (error) {
+        console.error("Error fetching complexity data:", error);
+      }
+    }
+    fetchData();
+  }, []);
+
   function handleLogout() {
     // Implement logout logic here
   }
@@ -37,14 +44,10 @@ function CodeComplexityPage() {
         <div className="module-list">
           {modulesData.map((module, index) => (
             <div className="module-item" key={index}>
-              <span className="module-name">{module.name}</span>
-              <img
-                src={module.complexityIcon}
-                alt="Complexity Icon"
-                className="complexity-icon"
-              />
+              <span className="module-name">{module.moduleName}</span> {/* Ensure the field names match */}
+              <span className="complexity-level">{module.complexity}</span>
               <NavLink
-                to={`/complexity/${module.id}`}
+                to={`/complexity/${module._id}`}
                 className="view-report-btn"
               >
                 View Details

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import "../styles/popup.css";
 
 function NewItemPopup({ closePopup }) {
+  const [moduleName, setModuleName] = useState("");
   const [sourceFile, setSourceFile] = useState(null);
   const [unitTestFile, setUnitTestFile] = useState(null);
   const [automationFile, setAutomationFile] = useState(null);
@@ -22,22 +23,33 @@ function NewItemPopup({ closePopup }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (!sourceFile || !unitTestFile || !automationFile) {
-      setError("Please upload all required files.");
+    if (!sourceFile) {
+      setError("Source file is mandatory.");
       return;
     }
-
+    if (!unitTestFile && !automationFile) {
+      setError("Please upload at least one of unit test file or automation file.");
+      return;
+    }
+  
     const formData = new FormData();
+    formData.append("moduleName", moduleName);
     formData.append("sourceCode", sourceFile);
     formData.append("unitTestSuite", unitTestFile);
     formData.append("automationSuite", automationFile);
-
+  
     try {
-      const response = await fetch("http://localhost:5000/api/modules", {
+      const response = await fetch("http://localhost:8000/api/modules/upload", {
         method: "POST",
         body: formData,
       });
-
+  
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('Error response:', errorText);
+        throw new Error('Network response was not ok');
+      }
+  
       const data = await response.json();
       alert(`Upload successful: ${data.message}`);
       closePopup();
@@ -45,6 +57,19 @@ function NewItemPopup({ closePopup }) {
       console.error("Error uploading files:", error);
       alert("Error uploading files. Please try again.");
     }
+  };
+  
+
+  const handleClear = () => {
+    setModuleName("");
+    setSourceFile(null);
+    setUnitTestFile(null);
+    setAutomationFile(null);
+    setError("");
+    document.getElementById("module-name-input").value = "";
+    document.getElementById("source-file-input").value = null;
+    document.getElementById("unit-test-file-input").value = null;
+    document.getElementById("automation-file-input").value = null;
   };
 
   return (
@@ -56,8 +81,19 @@ function NewItemPopup({ closePopup }) {
         <h2>Upload Code and Tests</h2>
         <form onSubmit={handleSubmit}>
           <div>
+            <label>Module Name:</label>
+            <input
+              id="module-name-input"
+              type="text"
+              value={moduleName}
+              onChange={(e) => setModuleName(e.target.value)}
+              required
+            />
+          </div>
+          <div>
             <label>Source code:</label>
             <input
+              id="source-file-input"
               type="file"
               accept=".js"
               onChange={handleFileChange("source")}
@@ -66,6 +102,7 @@ function NewItemPopup({ closePopup }) {
           <div>
             <label>Unit Test Suite:</label>
             <input
+              id="unit-test-file-input"
               type="file"
               accept=".js"
               onChange={handleFileChange("unitTest")}
@@ -74,6 +111,7 @@ function NewItemPopup({ closePopup }) {
           <div>
             <label>Automation Suite:</label>
             <input
+              id="automation-file-input"
               type="file"
               accept=".js"
               onChange={handleFileChange("automation")}
@@ -81,7 +119,7 @@ function NewItemPopup({ closePopup }) {
           </div>
           {error && <p className="error">{error}</p>}
           <button type="submit">Submit</button>
-          <button type="button" onClick={closePopup}>
+          <button type="button" onClick={handleClear}>
             Clear
           </button>
         </form>
