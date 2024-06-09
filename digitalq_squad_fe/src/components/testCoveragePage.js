@@ -1,5 +1,5 @@
 // Inside TestCoveragePage.jsx
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { Tab, Tabs, Table } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -8,19 +8,27 @@ import Menu from "./menuItems";
 import Footer from "./footerItem";
 import "../styles/testCoveragePage.css";
 
-const testCoverageData = [
-  { id: 1, moduleName: "User authentication module", coverage: "75%" },
-  { id: 2, moduleName: "Order management", coverage: "86%" },
-  { id: 3, moduleName: "Search engine", coverage: "94%" },
-  { id: 4, moduleName: "Payment and Shipping", coverage: "75%" },
-];
+// const testCoverageData = [
+//   { id: 1, moduleName: "User authentication module", coverage: "75%" },
+//   { id: 2, moduleName: "Order management", coverage: "86%" },
+//   { id: 3, moduleName: "Search engine", coverage: "94%" },
+//   { id: 4, moduleName: "Payment and Shipping", coverage: "75%" },
+// ];
 
 function TestCoveragePage() {
-  const [key, setKey] = useState("home");
-  const [showPopup, setShowPopup] = useState(false);
-  function handleLogout() {
-    // Implement logout logic here
-  }
+const [key, setKey] = useState("home");
+const [testCoverageData, setTestCoverageData] = useState([]);
+
+useEffect(() => {
+  fetch("http://localhost:8000/api/testCoverage")
+    .then((response) => response.json())
+    .then((data) => setTestCoverageData(data))
+    .catch((error) => console.error('Error fetching test coverage data:', error));
+}, []);
+
+function handleLogout() {
+  // Implement logout logic here
+}
 
   return (
     <div className="test-coverage-container">
