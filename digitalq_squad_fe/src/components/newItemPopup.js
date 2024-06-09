@@ -59,7 +59,6 @@ function NewItemPopup({ closePopup }) {
     }
   };
   
-
   const handleClear = () => {
     setModuleName("");
     setSourceFile(null);
