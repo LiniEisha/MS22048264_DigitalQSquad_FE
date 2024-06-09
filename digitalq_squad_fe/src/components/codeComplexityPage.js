@@ -45,7 +45,7 @@ function CodeComplexityPage() {
           {modulesData.map((module, index) => (
             <div className="module-item" key={index}>
               <span className="module-name">{module.moduleName}</span> {/* Ensure the field names match */}
-              <span className="complexity-level">{module.complexity}</span>
+              <span className="complexity-level">{module.complexityLevel}</span>
               <NavLink
                 to={`/complexity/${module._id}`}
                 className="view-report-btn"
