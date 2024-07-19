@@ -11,7 +11,7 @@ import "../styles/homePage.css";
 
 const modulesData = [
   { name: "User authentication module", coverage: "75%", complexity: "High" },
-  { name: "Order management", coverage: "86%", complexity: "Medium" },
+  { name: "Order management", coverage: "86%", complexity: "Low" },
   { name: "Search engine", coverage: "94%", complexity: "Low" },
   { name: "Payment and Shipping", coverage: "75%", complexity: "High" },
 ];

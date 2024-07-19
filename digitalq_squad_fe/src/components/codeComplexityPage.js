@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Tab, Tabs } from "react-bootstrap";
+import { Tab, Tabs, Table} from "react-bootstrap";
 import "../styles/CodeComplexityPage.css";
 import Header from "./headerItems";
 import Menu from "./menuItems";
@@ -42,18 +42,33 @@ function CodeComplexityPage() {
           {/* ... other tabs ... */}
         </Tabs>
         <div className="module-list">
-          {modulesData.map((module, index) => (
-            <div className="module-item" key={index}>
-              <span className="module-name">{module.moduleName}</span> {/* Ensure the field names match */}
-              <span className="complexity-level">{module.complexityLevel}</span>
-              <NavLink
-                to={`/complexity/${module._id}`}
-                className="view-report-btn"
-              >
-                View Details
-              </NavLink>
-            </div>
-          ))}
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>Module Name</th>
+                <th>CC</th>
+                <th>WCC</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {modulesData.map((module, index) => (
+                <tr key={index}>
+                  <td>{module.moduleName}</td> {/* Ensure the field names match */}
+                  <td>{module.cyclomaticComplexity}</td>
+                  <td>{module.weightedCompositeComplexity}</td>
+                  <td>
+                    <NavLink
+                      to={`/complexity/${module._id}`}
+                      className="view-report-btn"
+                    >
+                      View Details
+                    </NavLink>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
         </div>
       </div>
       <Footer />

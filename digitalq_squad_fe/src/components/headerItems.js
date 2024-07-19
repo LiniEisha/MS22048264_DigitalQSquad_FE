@@ -8,7 +8,7 @@ const Header = () => {
   return (
     <header className="header">
       {/* <h1>DigitalIQ</h1> */}
-      <NavLink exact to="/" className="h1" activeClassName="active">
+      <NavLink to="/" className={({ isActive }) => (isActive ? 'h1 active' : 'h1')}>
         <h1>DigitalIQ</h1>
       </NavLink>
     </header>

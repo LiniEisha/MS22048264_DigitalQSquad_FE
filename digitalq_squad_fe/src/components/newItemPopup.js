@@ -38,26 +38,51 @@ function NewItemPopup({ closePopup }) {
     formData.append("unitTestSuite", unitTestFile);
     formData.append("automationSuite", automationFile);
   
-    try {
-      const response = await fetch("http://localhost:8000/api/modules/upload", {
-        method: "POST",
-        body: formData,
-      });
+  //   try {
+  //     const response = await fetch("http://localhost:8000/api/modules/upload", {
+  //       method: "POST",
+  //       body: formData,
+  //     });
   
-      if (!response.ok) {
-        const errorText = await response.text();
-        console.error('Error response:', errorText);
-        throw new Error('Network response was not ok');
-      }
+  //     if (!response.ok) {
+  //       const errorText = await response.text();
+  //       console.error('Error response:', errorText);
+  //       throw new Error('Network response was not ok');
+  //     }
   
-      const data = await response.json();
-      alert(`Upload successful: ${data.message}`);
-      closePopup();
-    } catch (error) {
-      console.error("Error uploading files:", error);
-      alert("Error uploading files. Please try again.");
+  //     const data = await response.json();
+  //     alert(`Upload successful: ${data.message}`);
+  //     closePopup();
+  //   } catch (error) {
+  //     console.error("Error uploading files:", error);
+  //     alert("Error uploading files. Please try again.");
+  //   }
+  // };
+
+  try {
+    const response = await fetch("http://localhost:8000/api/modules/upload", {
+      method: "POST",
+      body: formData,
+      headers: {
+        'Accept': 'application/json',
+        // 'Content-Type': 'multipart/form-data' // Do not set this header, let the browser handle it
+      },
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error('Error response:', errorText);
+      throw new Error('Network response was not ok');
     }
-  };
+
+    const data = await response.json();
+    alert(`Upload successful: ${data.message}`);
+    closePopup();
+  } catch (error) {
+    console.error("Error uploading files:", error);
+    alert("Error uploading files. Please try again.");
+  }
+};
   
   const handleClear = () => {
     setModuleName("");

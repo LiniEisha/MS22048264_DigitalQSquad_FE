@@ -14,28 +14,28 @@ const Menu = ({ onLogout }) => {
 
   return (
     <div className="menu">
-      <NavLink exact to="/home" className="menu-item" activeClassName="active">
+      <NavLink
+  to="/home"
+  className={({ isActive }) => (isActive ? 'menu-item active' : 'menu-item')}
+>
         Home
       </NavLink>
-      <NavLink
-        to="/testCoverage"
-        className="menu-item"
-        activeClassName="active"
-      >
+    <NavLink
+  to="/testCoverage"
+  className={({ isActive }) => (isActive ? 'menu-item active' : 'menu-item')}
+>
         Test Coverage
       </NavLink>
       <NavLink
-        to="/codeComplexity"
-        className="menu-item"
-        activeClassName="active"
-      >
+  to="/codeComplexity"
+  className={({ isActive }) => (isActive ? 'menu-item active' : 'menu-item')}
+>
         Code Complexity
       </NavLink>
       <NavLink
-        to="/recommendations"
-        className="menu-item"
-        activeClassName="active"
-      >
+  to="/recommendations"
+  className={({ isActive }) => (isActive ? 'menu-item active' : 'menu-item')}
+>
         Recommendations
       </NavLink>
       <button className="logout-button" onClick={handleLogout}>
