@@ -8,19 +8,21 @@ import Footer from "./footerItem";
 import "../styles/testCoveragePage.css";
 
 function TestCoveragePage() {
-const [key, setKey] = useState("home");
-const [testCoverageData, setTestCoverageData] = useState([]);
+  const [key, setKey] = useState("home");
+  const [testCoverageData, setTestCoverageData] = useState([]);
 
-useEffect(() => {
-  fetch("http://localhost:8000/api/testCoverage")
-    .then((response) => response.json())
-    .then((data) => setTestCoverageData(data))
-    .catch((error) => console.error('Error fetching test coverage data:', error));
-}, []);
+  useEffect(() => {
+    fetch("http://localhost:8000/api/testCoverage")
+      .then((response) => response.json())
+      .then((data) => setTestCoverageData(data))
+      .catch((error) =>
+        console.error("Error fetching test coverage data:", error)
+      );
+  }, []);
 
-function handleLogout() {
-  // Implement logout logic here
-}
+  function handleLogout() {
+    // Implement logout logic here
+  }
 
   return (
     <div className="test-coverage-container">
@@ -32,21 +34,36 @@ function handleLogout() {
           activeKey={key}
           onSelect={(k) => setKey(k)}
           className="mb-3"
-        >
-        </Tabs>
+        ></Tabs>
         <div className="module-list">
-          {testCoverageData.map((module) => (
-            <div className="module-item" key={module.id}>
-              <span className="module-name">{module.moduleName}</span>
-              <span className="module-coverage">{module.coverage}</span>
-              <NavLink
-                to={`/coverage/${module.id}`}
-                className="view-report-btn"
-              >
-                View Full Report
-              </NavLink>
-            </div>
-          ))}
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>Module Name</th>
+                <th>Total Line Coverage</th>
+                <th>Total Branch Coverage</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {testCoverageData.map((module, index) => (
+                <tr key={index}>
+                  <td>{module.moduleName}</td>{" "}
+                  {/* Ensure the field names match */}
+                  <td>{module.totalLineCoverage}</td>
+                  <td>{module.totalBranchCoverage}</td>
+                  <td>
+                    <NavLink
+                      to={`/coverage/${module._id}`}
+                      className="view-report-btn"
+                    >
+                      View Details
+                    </NavLink>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
         </div>
       </div>
       <Footer />
@@ -55,7 +72,6 @@ function handleLogout() {
 }
 
 export default TestCoveragePage;
-
 
 // UI design// import React, { useState } from "react";
 // import { NavLink } from "react-router-dom";
