@@ -1,7 +1,8 @@
 // DashboardPage.jsx
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Tab, Tabs, Table } from "react-bootstrap";
+import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Header from "./headerItems";
 import Menu from "./menuItems";
@@ -9,16 +10,40 @@ import Footer from "./footerItem";
 import NewItemPopup from "./newItemPopup";
 import "../styles/homePage.css";
 
-const modulesData = [
-  { name: "User authentication module", coverage: "75%", complexity: "High" },
-  { name: "Order management", coverage: "86%", complexity: "Low" },
-  { name: "Search engine", coverage: "94%", complexity: "Low" },
-  { name: "Payment and Shipping", coverage: "75%", complexity: "High" },
-];
-
 function DashboardPage() {
   const [key, setKey] = useState("home");
   const [showPopup, setShowPopup] = useState(false);
+  const [mergedData, setMergedData] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const [complexityResponse, coverageResponse] = await Promise.all([
+          axios.get("http://localhost:8000/api/complexity/results"),
+          axios.get("http://localhost:8000/api/testCoverage")
+        ]);
+
+        const complexityData = complexityResponse.data;
+        const coverageData = coverageResponse.data;
+
+        const mergedData = coverageData.map(coverage => {
+          const complexity = complexityData.find(item => item.moduleName === coverage.moduleName) || {};
+          return {
+            moduleName: coverage.moduleName,
+            lineCoverage: coverage.totalLineCoverage,
+            branchCoverage: coverage.totalBranchCoverage,
+            complexity: complexity.complexityLevel
+          };
+        });
+
+        setMergedData(mergedData);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+
+    fetchData();
+  }, []);
 
   function handleLogout() {
     // Implement logout logic here
@@ -47,15 +72,17 @@ function DashboardPage() {
           <thead>
             <tr>
               <th>Module Name</th>
-              <th>Coverage</th>
+              <th>Line Coverage</th>
+              <th>Branch Coverage</th>
               <th>Complexity</th>
             </tr>
           </thead>
           <tbody>
-            {modulesData.map((module, index) => (
+            {mergedData.map((module, index) => (
               <tr key={index}>
-                <td>{module.name}</td>
-                <td>{module.coverage}</td>
+                <td>{module.moduleName}</td>
+                <td>{module.lineCoverage}</td>
+                <td>{module.branchCoverage}</td>
                 <td>{module.complexity}</td>
               </tr>
             ))}
