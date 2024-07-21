@@ -136,7 +136,7 @@ function DetailedCoverageReport() {
         </div>
         <div className="code-section">
           <pre>
-            <code>{reportDetails.codeSnippet || "No code snippet available"}</code>
+            <code>{reportDetails.sourceCode}</code>
           </pre>
         </div>
       </div>
