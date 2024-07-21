@@ -72,8 +72,8 @@ function DashboardPage() {
           <thead>
             <tr>
               <th>Module Name</th>
-              <th>Line Coverage</th>
-              <th>Branch Coverage</th>
+              <th>Average Line Coverage</th>
+              <th>Average Branch Coverage</th>
               <th>Complexity</th>
             </tr>
           </thead>
