@@ -48,6 +48,7 @@ function CodeComplexityPage() {
                 <th>Module Name</th>
                 <th>CC</th>
                 <th>WCC</th>
+                <th>Complexity Level</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -57,6 +58,7 @@ function CodeComplexityPage() {
                   <td>{module.moduleName}</td> {/* Ensure the field names match */}
                   <td>{module.cyclomaticComplexity}</td>
                   <td>{module.weightedCompositeComplexity}</td>
+                  <td>{module.complexityLevel}</td>
                   <td>
                     <NavLink
                       to={`/complexity/${module._id}`}

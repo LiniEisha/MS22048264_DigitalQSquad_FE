@@ -48,3 +48,19 @@ html {
   white-space: pre-wrap; /* Maintains whitespace formatting */
   font-family: "Courier New", monospace; /* Font for code readability */
 }
+
+.annotated-code-section {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  margin-top: 20px;
+}
+
+.metric {
+  margin: 5px 0;
+}
+
+pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
