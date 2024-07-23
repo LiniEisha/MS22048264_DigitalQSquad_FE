@@ -56,13 +56,16 @@ function NewItemPopup({ closePopup }) {
 
     const data = await response.json();
     alert(`Upload successful: ${data.message}`);
-    closePopup();
+    closePopupAndRefresh();
   } catch (error) {
     console.error("Error uploading files:", error);
     alert("Error uploading files. Please try again.");
   }
 };
-  
+const closePopupAndRefresh = () => {
+  closePopup();
+  window.location.reload(); // Refresh the page
+};
   const handleClear = () => {
     setModuleName("");
     setSourceFile(null);

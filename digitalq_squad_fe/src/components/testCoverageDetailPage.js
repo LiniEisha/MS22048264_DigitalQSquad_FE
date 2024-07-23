@@ -18,6 +18,7 @@ function DetailedCoverageReport() {
           `http://localhost:8000/api/testCoverage/${id}`
         );
         setReportDetails(response.data);
+        setAnnotatedSourceCode(response.data.annotatedSourceCode);
       } catch (error) {
         console.error("Error fetching coverage details:", error);
       }
@@ -40,23 +41,21 @@ function DetailedCoverageReport() {
       <hr />
       <div className="content-section">
         <div className="row justify-content-start">
-          <div class="col-4">
+          <div className="col-4">
             <div className="metrics-section">
               <p className="metric">Module Name: {reportDetails.moduleName}</p>
               <p className="metric">
-                Unit Test Line Coverage: {reportDetails.unitTestLineCoverage}%
+                Total Lines: {reportDetails.totalLines}
               </p>
               <p className="metric">
-                Unit Test Branch Coverage:{" "}
-                {reportDetails.unitTestBranchCoverage}%
+                Executed Lines: {reportDetails.executedLines}
               </p>
               <p className="metric">
-                Automation Line Coverage: {reportDetails.automationLineCoverage}
-                %
+                Total Branches: {reportDetails.totalBranches}
               </p>
               <p className="metric">
-                Automation Branch Coverage:{" "}
-                {reportDetails.automationBranchCoverage}%
+                Executed Branches:
+                {reportDetails.executedBranches}
               </p>
               <p className="metric">
                 Total Line Coverage: {reportDetails.totalLineCoverage}%
@@ -66,7 +65,7 @@ function DetailedCoverageReport() {
               </p>
             </div>
           </div>
-          <div class="col-8">
+          <div className="col-8">
             <div className="code-section">
               <pre>
                 <code>{reportDetails.sourceCode}</code>
@@ -77,12 +76,14 @@ function DetailedCoverageReport() {
       </div>
 
       <div className="content-section">
-        <div class="row justify-content-center">
+        <div className="row justify-content-center">
           <div className="col-12">
             <div className="annotated-code-section">
               <h3>Annotated Source Code:</h3>
               <pre>
-                <code>{reportDetails.sourceCode}</code>
+                <code
+                  dangerouslySetInnerHTML={{ __html: annotatedSourceCode }}
+                />
               </pre>
             </div>
           </div>

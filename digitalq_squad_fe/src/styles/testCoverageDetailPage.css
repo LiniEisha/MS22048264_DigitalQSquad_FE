@@ -64,3 +64,7 @@ pre {
   white-space: pre-wrap;
   word-wrap: break-word;
 }
+
+.annotated-code-section mark {
+  background-color: blue; /* or any color you prefer for highlighting */
+}

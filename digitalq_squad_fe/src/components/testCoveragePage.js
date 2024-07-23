@@ -40,8 +40,8 @@ function TestCoveragePage() {
             <thead>
               <tr>
                 <th>Module Name</th>
-                <th>Total Line Coverage</th>
-                <th>Total Branch Coverage</th>
+                <th>Average Line Coverage</th>
+                <th>Average Branch Coverage</th>
                 <th>Actions</th>
               </tr>
             </thead>
