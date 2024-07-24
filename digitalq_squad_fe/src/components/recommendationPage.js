@@ -10,6 +10,7 @@ function RecommendationsPage() {
   const [key, setKey] = useState("home");
   const [showPopup, setShowPopup] = useState(false);
   const [highComplexModules, setHighComplexModules] = useState([]);
+  const [lowCoverageModules, setLowCoverageModules] = useState([]);
 
   useEffect(() => {
     async function fetchHighComplexModules() {
@@ -22,8 +23,18 @@ function RecommendationsPage() {
         console.error("Error fetching high complexity modules:", error.message);
       }
     }
-
+    async function fetchLowCoverageModules() {
+      try {
+        const response = await axios.get(
+          "http://localhost:8000/api/testCoverage/low-coverage"
+        );
+        setLowCoverageModules(response.data);
+      } catch (error) {
+        console.error("Error fetching low coverage modules:", error.message);
+      }
+    }
     fetchHighComplexModules();
+    fetchLowCoverageModules();
   }, []);
 
   function handleLogout() {
@@ -47,10 +58,29 @@ function RecommendationsPage() {
         <div className="recommendations-block">
           <div className="recommendation-section">
             <h4>Areas that need more coverage</h4>
+            <p>When line coverage is less than 80%, branch coverage is less than 75%</p>
+            <Table striped bordered hover>
+              <thead>
+                <tr>
+                  <th>Module Name</th>
+                  <th>Line Coverage</th>
+                  <th>Branch Coverage</th>
+                </tr>
+              </thead>
+              <tbody>
+                {lowCoverageModules.map((module, index) => (
+                  <tr key={index}>
+                    <td>{module.moduleName}</td>
+                    <td>{module.unitTestLineCoverage}%</td>
+                    <td>{module.totalBranchCoverage}%</td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
           </div>
           <div className="recommendation-section">
             <h4>Areas that needs more testing</h4>
-
+            <p>when 182.58 &le; WCC &lt; 466: complex, WCC &ge; 466: high complex</p>
             <Table striped bordered hover>
               <thead>
                 <tr>

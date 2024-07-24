@@ -114,7 +114,7 @@ const closePopupAndRefresh = () => {
               onChange={handleFileChange("unitTest")}
             />
           </div>
-          <div>
+          {/* <div>
             <label>Automation Suite:</label>
             <input
               id="automation-file-input"
@@ -122,7 +122,7 @@ const closePopupAndRefresh = () => {
               accept=".js"
               onChange={handleFileChange("automation")}
             />
-          </div>
+          </div> */}
           {error && <p className="error">{error}</p>}
           <button type="submit">Submit</button>
           <button type="button" onClick={handleClear}>

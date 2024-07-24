@@ -30,7 +30,7 @@ function DashboardPage() {
           const complexity = complexityData.find(item => item.moduleName === coverage.moduleName) || {};
           return {
             moduleName: coverage.moduleName,
-            lineCoverage: coverage.totalLineCoverage,
+            lineCoverage: coverage.unitTestLineCoverage,
             branchCoverage: coverage.totalBranchCoverage,
             complexity: complexity.complexityLevel
           };
@@ -72,8 +72,8 @@ function DashboardPage() {
           <thead>
             <tr>
               <th>Module Name</th>
-              <th>Average Line Coverage</th>
-              <th>Average Branch Coverage</th>
+              <th>Line Coverage</th>
+              <th>Branch Coverage</th>
               <th>Complexity</th>
             </tr>
           </thead>

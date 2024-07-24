@@ -40,8 +40,8 @@ function TestCoveragePage() {
             <thead>
               <tr>
                 <th>Module Name</th>
-                <th>Average Line Coverage</th>
-                <th>Average Branch Coverage</th>
+                <th> Line Coverage</th>
+                <th> Branch Coverage</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -50,7 +50,7 @@ function TestCoveragePage() {
                 <tr key={index}>
                   <td>{module.moduleName}</td>{" "}
                   {/* Ensure the field names match */}
-                  <td>{module.totalLineCoverage}</td>
+                  <td>{module.unitTestLineCoverage}</td>
                   <td>{module.totalBranchCoverage}</td>
                   <td>
                     <NavLink
